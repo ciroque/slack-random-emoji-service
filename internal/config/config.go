@@ -19,17 +19,17 @@ type Settings struct {
 func NewSettings() (*Settings, error) {
 	slackAuthToken := os.Getenv("SLACK_AUTH_TOKEN")
 	if slackAuthToken == "" {
-		return nil, errors.New("slack auth token is required")
+		return nil, errors.New("slack auth token is required, please set the SLACK_AUTH_TOKEN environment variable")
 	}
 
-	port := os.Getenv("PORT")
+	port := os.Getenv("SRES_PORT")
 	if port == "" {
 		port = "888"
 	}
 
 	nport, err := strconv.Atoi(port)
 	if err != nil {
-		return nil, fmt.Errorf("unable to parse PORT: %v", err)
+		return nil, fmt.Errorf("unable to parse SRES_PORT: %v", err)
 	}
 
 	retrievalPeriod := os.Getenv("RETRIEVAL_PERIOD_SECONDS")
