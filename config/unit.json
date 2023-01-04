@@ -1,0 +1,14 @@
+{
+  "listeners": {
+    "*:20120": {
+      "application": "slack-random-emoji-service"
+    }
+  },
+  "applications": {
+    "slack-random-emoji-service": {
+      "type": "external",
+      "working_directory": "/opt/slack-random-emoji-service/bin/",
+      "executable": "slack-random-emoji-service"
+    }
+  }
+}

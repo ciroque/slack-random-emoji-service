@@ -24,7 +24,7 @@ func NewSettings() (*Settings, error) {
 
 	port := os.Getenv("SRES_PORT")
 	if port == "" {
-		port = "888"
+		port = "20120"
 	}
 
 	nport, err := strconv.Atoi(port)

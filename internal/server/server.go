@@ -10,6 +10,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"math/rand"
 	"net/http"
+	unit "unit.nginx.org/go"
 )
 
 type Server struct {
@@ -32,13 +33,13 @@ func (server *Server) Run() {
 
 	address := fmt.Sprintf("%s:%d", server.Settings.Host, server.Settings.Port)
 	server.Logger.Info("Listening on ", address)
-	err := http.ListenAndServe(address, nil)
+	err := unit.ListenAndServe(address, nil)
 	if err != nil {
 		server.AbortChannel <- err.Error()
 	}
 }
 
-func (server *Server) ServeRandomEmoji(writer http.ResponseWriter, request *http.Request) {
+func (server *Server) ServeRandomEmoji(writer http.ResponseWriter, _ *http.Request) {
 	length := len(*server.Emos)
 	index := rand.Intn(length)
 
